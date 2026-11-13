@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Management System</h1>
+            <div class="stats">
+                <span>Total Students: <strong id="totalCount">0</strong></span>
+                <span>Average CGPA: <strong id="avgCgpa">0.00</strong></span>
+            </div>
+        </header>
+
+        <main class="main-grid">
+            <!-- Form Section -->
+            <section class="card form-section">
+                <h2 id="formTitle">Add New Student</h2>
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label for="rollNo">Roll Number *</label>
+                        <input type="text" id="rollNo" placeholder="e.g., 25CSE042" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" placeholder="e.g., Aarav Sharma" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="branch">Branch / Department *</label>
+                        <select id="branch" required>
+                            <option value="">Select Branch</option>
+                            <option value="CSE">CSE</option>
+                            <option value="ECE">ECE</option>
+                            <option value="EE">EE</option>
+                            <option value="ME">ME</option>
+                            <option value="CE">CE</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="semester">Semester (1-8) *</label>
+                            <input type="number" id="semester" min="1" max="8" placeholder="3" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cgpa">CGPA (0-10) *</label>
+                            <input type="number" id="cgpa" step="0.01" min="0" max="10" placeholder="8.75" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Add Student</button>
+                        <button type="button" id="cancelBtn" class="btn btn-secondary hidden">Cancel</button>
+                    </div>
+                    <p id="errorMsg" class="error-msg"></p>
+                </form>
+            </section>
+
+            <!-- Table & Search Section -->
+            <section class="card table-section">
+                <div class="table-controls">
+                    <input type="text" id="searchInput" placeholder="Search by Roll No or Name...">
+                    <select id="branchFilter">
+                        <option value="ALL">All Branches</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EE">EE</option>
+                        <option value="ME">ME</option>
+                        <option value="CE">CE</option>
+                    </select>
+                    <button id="exportBtn" class="btn btn-outline">Export CSV</button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Roll No</th>
+                                <th>Name</th>
+                                <th>Branch</th>
+                                <th>Sem</th>
+                                <th>CGPA</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+                            <!-- Rows injected dynamically by JS -->
+                        </tbody>
+                    </table>
+                    <p id="emptyState" class="empty-state hidden">No student records found.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
